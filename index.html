@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternate Universe Simulator Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-particles"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="app" id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header__content">
+                    <div class="logo">
+                        <h1 class="logo__text">
+                            <span class="logo__icon">🌌</span>
+                            <span class="logo__main">Alternate Universe</span>
+                            <span class="logo__pro">PRO</span>
+                        </h1>
+                    </div>
+                    <div class="header__actions">
+                        <div class="user-tier" id="userTier">
+                            <span class="tier-badge tier-badge--free">FREE</span>
+                            <span class="tier-usage">3/5 uses today</span>
+                        </div>
+                        <button class="btn btn--outline btn--sm upgrade-btn" id="upgradeBtn">
+                            ⚡ Upgrade to Pro
+                        </button>
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                            <span class="theme-toggle__icon">🌙</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="hero__content">
+                        <h2 class="hero__title">
+                            <span class="gradient-text">Explore Infinite Possibilities</span>
+                        </h2>
+                        <p class="hero__subtitle">
+                            Generate complete alternate universes with news articles, viral memes, and social media content using advanced AI
+                        </p>
+                        <div class="hero__features">
+                            <div class="feature-pill">📰 News Articles</div>
+                            <div class="feature-pill">🎭 Viral Memes</div>
+                            <div class="feature-pill">📱 Social Posts</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Input Section -->
+                <section class="input-section">
+                    <div class="input-card glass-card">
+                        <div class="input-group">
+                            <label for="promptInput" class="form-label">What if...</label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="promptInput" 
+                                    class="form-control prompt-input"
+                                    placeholder="social media was run by cats?"
+                                    maxlength="200"
+                                />
+                                <button class="generate-btn gradient-btn" id="generateBtn">
+                                    <span class="generate-btn__text">Generate Universe</span>
+                                    <span class="generate-btn__loader">
+                                        <div class="pulse-loader"></div>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Content Type Selection -->
+                        <div class="content-types" id="contentTypes">
+                            <p class="content-types__title">Generate:</p>
+                            <div class="content-types__options">
+                                <label class="content-type-option">
+                                    <input type="checkbox" value="article" checked>
+                                    <span class="content-type-label">📰 News Article</span>
+                                </label>
+                                <label class="content-type-option">
+                                    <input type="checkbox" value="meme" checked>
+                                    <span class="content-type-label">🎭 Meme <span class="pro-badge">PRO</span></span>
+                                </label>
+                                <label class="content-type-option">
+                                    <input type="checkbox" value="social">
+                                    <span class="content-type-label">📱 Social Post <span class="pro-badge">PRO</span></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Example Prompts -->
+                        <div class="examples" id="examples">
+                            <p class="examples__title">✨ Trending scenarios:</p>
+                            <div class="examples__grid" id="examplesGrid"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Section -->
+                <section class="results-section" id="resultsSection">
+                    <div class="results-card glass-card">
+                        <!-- Generation Progress -->
+                        <div class="progress" id="progress">
+                            <div class="progress__header">
+                                <h3 class="progress__title">Generating your alternate universe...</h3>
+                                <div class="progress__bar">
+                                    <div class="progress__fill" id="progressFill"></div>
+                                </div>
+                            </div>
+                            <div class="progress__items">
+                                <div class="progress__item" id="progressHeadline">
+                                    <div class="progress__icon">📰</div>
+                                    <div class="progress__text">Creating breaking news headline...</div>
+                                    <div class="progress__spinner"></div>
+                                </div>
+                                <div class="progress__item" id="progressArticle">
+                                    <div class="progress__icon">📝</div>
+                                    <div class="progress__text">Writing detailed news article...</div>
+                                    <div class="progress__spinner"></div>
+                                </div>
+                                <div class="progress__item" id="progressMeme">
+                                    <div class="progress__icon">🎭</div>
+                                    <div class="progress__text">Generating viral meme content...</div>
+                                    <div class="progress__spinner"></div>
+                                </div>
+                                <div class="progress__item" id="progressSocial">
+                                    <div class="progress__icon">📱</div>
+                                    <div class="progress__text">Creating social media posts...</div>
+                                    <div class="progress__spinner"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Generated Content -->
+                        <div class="content" id="content">
+                            <!-- News Article -->
+                            <div class="content__section" id="articleSection">
+                                <div class="content-card">
+                                    <div class="content-header">
+                                        <span class="content-type-badge">📰 Breaking News</span>
+                                        <div class="content-actions">
+                                            <button class="action-btn" title="Copy"><span>📋</span></button>
+                                            <button class="action-btn" title="Share"><span>🔗</span></button>
+                                        </div>
+                                    </div>
+                                    <h3 class="content__headline" id="generatedHeadline"></h3>
+                                    <div class="content__article" id="generatedArticle"></div>
+                                </div>
+                            </div>
+
+                            <!-- Meme Content -->
+                            <div class="content__section" id="memeSection">
+                                <div class="content-card">
+                                    <div class="content-header">
+                                        <span class="content-type-badge">🎭 Viral Meme</span>
+                                        <div class="content-actions">
+                                            <button class="action-btn" title="Download"><span>💾</span></button>
+                                            <button class="action-btn" title="Share"><span>🔗</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="meme-container" id="memeContainer">
+                                        <div class="meme-template" id="memeTemplate">
+                                            <div class="meme-text meme-text--top" id="memeTopText"></div>
+                                            <div class="meme-placeholder">
+                                                <div class="meme-placeholder__icon">🎭</div>
+                                                <div class="meme-placeholder__text">Meme Template Visualization</div>
+                                            </div>
+                                            <div class="meme-text meme-text--bottom" id="memeBottomText"></div>
+                                        </div>
+                                        <div class="meme-description" id="memeDescription"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Social Media Post -->
+                            <div class="content__section" id="socialSection">
+                                <div class="content-card">
+                                    <div class="content-header">
+                                        <span class="content-type-badge">📱 Social Media</span>
+                                        <div class="content-actions">
+                                            <button class="action-btn" title="Copy"><span>📋</span></button>
+                                            <button class="action-btn" title="Tweet"><span>🐦</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="social-post">
+                                        <div class="social-post__content" id="socialContent"></div>
+                                        <div class="social-post__metrics">
+                                            <span class="metric">❤️ 12.4K</span>
+                                            <span class="metric">🔄 3.2K</span>
+                                            <span class="metric">💬 891</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Actions Section -->
+                            <div class="content__section" id="actionsSection">
+                                <div class="actions-card glass-card">
+                                    <div class="actions-grid">
+                                        <button class="btn btn--primary generate-new-btn" id="generateNewBtn">
+                                            <span>🚀</span>
+                                            Generate New Universe
+                                        </button>
+                                        <button class="btn btn--secondary save-btn" id="saveBtn">
+                                            <span>💾</span>
+                                            Save to Favorites
+                                        </button>
+                                        <button class="btn btn--outline export-btn" id="exportBtn">
+                                            <span>📥</span>
+                                            Export All
+                                        </button>
+                                        <button class="btn btn--outline share-btn" id="shareAllBtn">
+                                            <span>🌐</span>
+                                            Share Universe
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pricing Modal -->
+                <div class="modal hidden" id="pricingModal">
+                    <div class="modal__backdrop" id="modalBackdrop"></div>
+                    <div class="modal__content">
+                        <div class="modal__header">
+                            <h2 class="modal__title">Upgrade to Unlock Infinite Possibilities</h2>
+                            <button class="modal__close" id="modalClose">&times;</button>
+                        </div>
+                        <div class="modal__body">
+                            <div class="pricing-tiers">
+                                <div class="pricing-tier">
+                                    <div class="tier-header">
+                                        <h3 class="tier-name">Free Explorer</h3>
+                                        <div class="tier-price">$0</div>
+                                    </div>
+                                    <ul class="tier-features">
+                                        <li>5 generations per day</li>
+                                        <li>Basic news articles</li>
+                                        <li>Standard sharing</li>
+                                    </ul>
+                                </div>
+                                <div class="pricing-tier pricing-tier--popular">
+                                    <div class="tier-badge-popular">Most Popular</div>
+                                    <div class="tier-header">
+                                        <h3 class="tier-name">Pro Creator</h3>
+                                        <div class="tier-price">$9.99<span>/month</span></div>
+                                    </div>
+                                    <ul class="tier-features">
+                                        <li>✨ Unlimited generations</li>
+                                        <li>🎭 Meme generation & templates</li>
+                                        <li>📱 Social media post creation</li>
+                                        <li>💾 Content history & favorites</li>
+                                        <li>⚡ Priority processing</li>
+                                        <li>🎨 HD exports without watermarks</li>
+                                    </ul>
+                                    <button class="btn btn--primary btn--full-width upgrade-tier-btn">
+                                        Upgrade to Pro
+                                    </button>
+                                </div>
+                                <div class="pricing-tier">
+                                    <div class="tier-header">
+                                        <h3 class="tier-name">Enterprise Team</h3>
+                                        <div class="tier-price">$49.99<span>/month</span></div>
+                                    </div>
+                                    <ul class="tier-features">
+                                        <li>Everything in Pro</li>
+                                        <li>👥 Team collaboration</li>
+                                        <li>🔧 API access</li>
+                                        <li>🏷️ Custom branding</li>
+                                        <li>📊 Analytics dashboard</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__content">
+                    <p class="footer__text">
+                        Crafted with passion by a creative developer who believes in infinite possibilities
+                    </p>
+                    <div class="footer__links">
+                        <span class="footer__highlight">⚡ Powered by Advanced AI</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notifications -->
+    <div class="notification" id="notification">
+        <div class="notification__content">
+            <span class="notification__icon">✅</span>
+            <span class="notification__text">Content saved to favorites!</span>
+        </div>
+    </div>
+
+    <!-- Usage Limit Modal -->
+    <div class="modal hidden" id="limitModal">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content modal__content--small">
+            <div class="modal__header">
+                <h3 class="modal__title">Daily Limit Reached</h3>
+                <button class="modal__close" onclick="document.getElementById('limitModal').classList.add('hidden')">&times;</button>
+            </div>
+            <div class="modal__body">
+                <p>You've reached your daily limit of 5 generations. Upgrade to Pro for unlimited access!</p>
+                <button class="btn btn--primary btn--full-width" onclick="document.getElementById('pricingModal').classList.remove('hidden'); document.getElementById('limitModal').classList.add('hidden');">
+                    Upgrade Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
